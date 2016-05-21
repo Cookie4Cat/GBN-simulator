@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GBN </title>
+    <style>
+        body{
+            margin: 0px;
+            background-color: #ccc;
+            text-align: center;
+        }
+        #GBN{
+            margin: 100px auto;
+            background-color: white;
+            width: 800px;
+            height: 400px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        .send_pkt{
+            background: gray;
+            top:40px;
+            width: 20px;
+            height: 40px;
+            position: absolute;
+        }
+        .receive_pkt{
+            background: gray;
+            bottom: 80px;
+            width: 20px;
+            height: 40px;
+            position: absolute;
+        }
+        #r_pkt0{
+            left: 20px;
+        }
+        #r_pkt1{
+            left: 50px;
+        }
+        .pkt{
+            background: lightgreen;
+            color:gray;
+            top:80px;
+            width: 20px;
+            height: 40px;
+            position: absolute;
+        }
+        #pkt0{
+            left:20px;
+        }
+        #pkt1{
+            left:50px;
+        }
+        #info{
+            padding-top:17px;
+            border: dotted;
+            border-radius: 10px;
+            position:absolute;
+            left:20px;
+            bottom: 5px;
+            width: 400px;
+            height: 40px;
+            color: grey;
+        }
+        #info-packet{
+            background-color: lightgreen;
+            color: white;
+        }
+        #info-received{
+            background-color: red;
+            color: white;
+        }
+        #info-ack{
+            background-color: yellow;
+            color: gray;
+        }
+        #info-ack-received{
+            background-color: deepskyblue;
+            color: white;
+        }
+        #info-selected{
+            background-color: chocolate;
+            color: white;
+        }
+        #send-btn{
+            top: 40px;
+            right: 200px;
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            background-color: forestgreen;
+            border-radius: 5px;
+            padding-top:7px;
+        }
+        #pause-btn{
+            top: 40px;
+            right: 80px;
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            background-color: forestgreen;
+            border-radius: 5px;
+            padding-top:7px;
+        }
+        #pause-btn:hover{
+            background-color: darkgreen;
+        }
+        #send-btn:hover{
+            background-color: darkgreen;
+
+        }
+        #send-window{
+            background-color: rgba(0,0,0,0);
+            color: forestgreen;
+            border:solid;
+            width:147px;
+            height: 50px;
+            left: 13px;
+            top:32px;
+            position: absolute;
+        }
+        #receive-window{
+            background-color: rgba(0,0,0,0);
+            color: forestgreen;
+            border:solid;
+            width:27px;
+            height: 50px;
+            left: 13px;
+            bottom:72px;
+            position: absolute;
+        }
+        a{
+            color:white;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+<div id="GBN">
+    <div id="sender"></div>
+    <div id="send-window"></div>
+    <div id="pkt"></div>
+    <div id="receiver"></div>
+    <div id="receive-window"></div>
+    <div id="info">
+        <span id="info-packet">Packet</span>&nbsp;
+        <span id="info-received">Received</span>&nbsp;
+        <span id="info-ack">Ack</span>&nbsp;
+        <span id="info-ack-received">Ack Received</span>&nbsp;
+        <span id="info-selected">Selected</span>
+    </div>
+    <div id="send-btn" onclick="sendPkt()"><a href="#">SendPacket</a></div>
+    <div id="pause-btn"><a href="#" id="btn-pause">Pause</a> </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script>
+    for(var i=0; i<10; i++){
+        <!--初始化发送方-->
+        var se_Pkt = '<div id="s_pkt'+i+'" class="send_pkt">'+i+'</div>';
+        $("#sender").append(se_Pkt);
+        $("#s_pkt" + i).css('left',30*i + 20);
+        <!--初始化待发送包-->
+        var pkt = '<div id="pkt'+i+'" class="pkt" onclick="hidePkt('+ i +')" hidden>'+i+'</div>';
+        $("#pkt").append(pkt);
+        $("#pkt" + i).css('left', 30*i + 20);
+        <!--初始化接受方-->
+        var re_pkt = '<div id="r_pkt'+i+'" class="receive_pkt">'+i+'</div>';
+        $("#receiver").append(re_pkt);
+        $("#r_pkt" + i).css("left", 30*i + 20);
+    }
+</script>
+<script src="js/GBN.js"></script>
+</body>
+</html>
