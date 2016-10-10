@@ -1,2 +1,2 @@
 # GBN-simulator
-Go-Back-N ARQ demonstration use javascript and css
+Go-Back-N ARQ demonstration using javascript and css
